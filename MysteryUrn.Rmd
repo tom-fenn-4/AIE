@@ -1,0 +1,19 @@
+---
+title: "Urn of Mystery"
+author: "ptf"
+date: "Monday, June 15, 2015"
+output: html_document
+---
+
+An urn contains 1000 marbles that are either red or green.   An unknown fraction is green.   What is the probability of being correct, if the result of a single draw is used to determine the majority color.
+
+```{r}
+n <- 10000
+fraction_green <- runif(n)
+majority_green <- fraction_green > 0.5
+draw_green <- runif(n) < fraction_green
+is_correct <- draw_green & majority_green | !draw_green & !majority_green
+fraction_correct <- sum(is_correct)/length(is_correct)
+fraction_correct
+```
+
