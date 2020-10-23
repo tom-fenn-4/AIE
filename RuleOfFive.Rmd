@@ -1,0 +1,25 @@
+---
+title: "Rule of 5"
+author: "ptf"
+date: "Tuesday, June 16, 2015"
+output: word_document
+---
+
+The rule of 5 states that the median of a distribution will be located between the min and max of 5 samples most of the time.  What is the actual percentage?  What about the mean?
+
+```{r}
+sim_results <- function(n, f) {
+  d <- matrix(f(n*5), nrow = 5)
+  lbound <- apply(d, 2, min)
+  ubound <- apply(d, 2, max)
+  sum(lbound < 0 & ubound > 0)/n 
+}
+
+sim_results(1e5, rnorm)
+```
+
+
+
+```{r, echo=FALSE}
+library(lattice)
+```

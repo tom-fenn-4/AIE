@@ -1,0 +1,39 @@
+---
+title: "Maintenance Savings"
+author: "ptf"
+date: "Tuesday, June 16, 2015"
+output: html_document
+---
+
+
+```{r}
+n <- 10000
+ms <- runif(n, 10, 20)
+ls <- runif(n, -2, 8)
+rms <- runif(n, 3, 9)
+pl <- runif(n, 15000, 35000)
+
+savings <- (ms + ls + rms) * pl
+
+
+```
+
+Summary statistics on savings and histograms of each variable and the result.
+
+```{r, echo=FALSE}
+library(lattice)
+summary(savings)
+histogram(ms)
+histogram(ls)
+histogram(rms)
+histogram(savings)
+```
+
+The cost of the equipment and the probability of breaking even
+
+```{r}
+cost <- 400000
+breakeven <- savings >= cost
+sum(breakeven)/length(breakeven)
+```
+
